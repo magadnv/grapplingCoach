@@ -6,6 +6,7 @@ import com.grappling.grapplingcoach.ui.MainLayout;
 import com.grappling.grapplingcoach.service.AttendanceService;
 import com.grappling.grapplingcoach.domain.TrainingSession;
 
+import com.grappling.grapplingcoach.ui.components.StatCard;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.html.Div;
@@ -45,42 +46,11 @@ public class DashboardView extends VerticalLayout {
         }
 
         // 2. Karten bauen
-        Div kidsCard = new Div();
-        kidsCard.add(
-                new H3("Kids"),
-                new Span(String.valueOf(kidsCount))
-        );
-        kidsCard.getStyle()
-                .set("padding", "20px")
-                .set("border-radius", "12px")
-                .set("box-shadow", "0 4px 12px rgba(0,0,0,0.1)")
-                .set("text-align", "center")
-                .set("min-width", "150px");
-
-        Div attendanceCard = new Div();
-
-        attendanceCard.add(
-                new H3("Attendance Rate"),
-                new Span(Math.round(attendanceRate * 100) + "%")
-        );
-        attendanceCard.getStyle()
-                .set("padding", "20px")
-                .set("border-radius", "12px")
-                .set("box-shadow", "0 4px 12px rgba(0,0,0,0.1)")
-                .set("text-align", "center")
-                .set("min-width", "150px");
-
-        Div todayCard = new Div();
-        todayCard.add(
-                new H3("Today Present"),
-                new Span(todayPresent + " / " + kidsCount)
-        );
-        todayCard.getStyle()
-                .set("padding", "20px")
-                .set("border-radius", "12px")
-                .set("box-shadow", "0 4px 12px rgba(0,0,0,0.1)")
-                .set("text-align", "center")
-                .set("min-width", "150px");
+        StatCard kidsCard = new StatCard("Kids", String.valueOf(kidsCount));
+        StatCard attendanceCard =
+                new StatCard("Attendance Rate", Math.round(attendanceRate * 100) + "%");
+        StatCard todayCard =
+                new StatCard("Today Present", String.valueOf(todayPresent));
 
         Div trainingCard = new Div();
 
