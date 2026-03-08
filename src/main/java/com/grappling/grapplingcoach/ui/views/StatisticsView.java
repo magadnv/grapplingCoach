@@ -22,7 +22,7 @@ public class StatisticsView extends VerticalLayout {
 
         grid.addColumn(kid ->
                         Math.round(attendanceService.getAttendanceRate(kid) * 100) + "%")
-                .setHeader("Attendance");
+                .setHeader("Anwesenheit");
 
         grid.setItems(kidRepository.findAll());
 

@@ -12,6 +12,7 @@ import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H3;
 
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.button.Button;
@@ -31,6 +32,11 @@ public class DashboardView extends VerticalLayout {
 
         H2 title = new H2("Coach Dashboard");
 
+        setPadding(false);
+        setSpacing(true);
+
+        getStyle().set("padding", "40px");
+
         // 1. Daten laden
         long kidsCount = kidRepository.count();
         long attendanceCount = attendanceRepository.count();
@@ -46,11 +52,11 @@ public class DashboardView extends VerticalLayout {
         }
 
         // 2. Karten bauen
-        StatCard kidsCard = new StatCard("Kids", String.valueOf(kidsCount));
+        StatCard kidsCard = new StatCard("Kinder", String.valueOf(kidsCount));
         StatCard attendanceCard =
-                new StatCard("Attendance Rate", Math.round(attendanceRate * 100) + "%");
+                new StatCard("Anwesenheit", Math.round(attendanceRate * 100) + "%");
         StatCard todayCard =
-                new StatCard("Today Present", String.valueOf(todayPresent));
+                new StatCard("Heute da", String.valueOf(todayPresent));
 
         Div trainingCard = new Div();
 
@@ -58,7 +64,7 @@ public class DashboardView extends VerticalLayout {
 
         if (todaySession.isPresent()) {
 
-            startTraining = new Button("Open Training", event -> {
+            startTraining = new Button("Training heute", event -> {
 
                 event.getSource()
                         .getUI()
@@ -82,7 +88,7 @@ public class DashboardView extends VerticalLayout {
         }
 
         trainingCard.add(
-                new H3("Training Today"),
+                new H3("Trainingstag"),
                 startTraining
         );
         trainingCard.getStyle()
@@ -100,8 +106,11 @@ public class DashboardView extends VerticalLayout {
                 trainingCard
         );
 
-        cards.setSpacing(true);
         cards.setPadding(true);
+        cards.setWidthFull();
+        cards.setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
+        cards.setSpacing(true);
+        cards.getStyle().set("gap", "40px");
 
         // 4. Layout zusammenbauen
         add(title, cards);

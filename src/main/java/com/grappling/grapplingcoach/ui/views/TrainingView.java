@@ -26,7 +26,7 @@ public class TrainingView extends VerticalLayout {
 
         this.attendanceService = attendanceService;
 
-        Button startTraining = new Button("Start Training");
+        Button startTraining = new Button("Training starten");
 
         startTraining.addClickListener(event -> {
 
@@ -58,7 +58,7 @@ public class TrainingView extends VerticalLayout {
 
             return checkbox;
 
-        }).setHeader("Present");
+        }).setHeader("Anwesend");
 
         add(startTraining, grid);
     }

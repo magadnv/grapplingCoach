@@ -30,7 +30,7 @@ public class TrainingDetailView extends VerticalLayout implements BeforeEnterObs
                 .setHeader("Name");
 
         grid.addColumn(Attendance::isPresent)
-                .setHeader("Present");
+                .setHeader("Anwesend");
 
         add(grid);
     }

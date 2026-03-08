@@ -19,13 +19,13 @@ public class HistoryView extends VerticalLayout {
         Grid<TrainingSession> grid = new Grid<>(TrainingSession.class, false);
 
         grid.addColumn(TrainingSession::getDate)
-                .setHeader("Training Date");
+                .setHeader("Trainingsdatum");
 
         // Open Training
         grid.addComponentColumn(session -> {
 
             RouterLink link = new RouterLink(
-                    "Open",
+                    "Öffnen",
                     TrainingDetailView.class,
                     new RouteParameters(
                             "sessionId",
@@ -40,7 +40,7 @@ public class HistoryView extends VerticalLayout {
         // DELETE TRAINING
         grid.addComponentColumn(session -> {
 
-            Button deleteButton = new Button("Delete", event -> {
+            Button deleteButton = new Button("Löschen", event -> {
 
                 attendanceService.deleteTrainingSession(session.getId());
 
@@ -50,7 +50,7 @@ public class HistoryView extends VerticalLayout {
 
             return deleteButton;
 
-        }).setHeader("Delete");
+        }).setHeader("Entfernen");
 
         grid.setItems(attendanceService.getSessions());
 

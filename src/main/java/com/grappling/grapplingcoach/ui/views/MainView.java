@@ -44,9 +44,9 @@ public class MainView extends VerticalLayout {
 
             return checkbox;
 
-        }).setHeader("Present");
+        }).setHeader("Anwesen");
 
-        Button addButton       = new Button("Add Kid", event -> {
+        Button addButton       = new Button("Neuer Ninja", event -> {
 
             service.addKid(nameField.getValue());
 
